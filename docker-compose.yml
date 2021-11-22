@@ -1,0 +1,16 @@
+version: "3"
+services:
+  ceph:
+    image: quay.io/ceph/daemon
+    command: demo --debug 255
+    environment:
+      - NETWORK_AUTO_DETECT=4
+      - DEMO_DAEMONS=osd rgw
+      - CEPH_DEMO_UID=admin
+      - CEPH_DEMO_ACCESS_KEY=admin
+      - CEPH_DEMO_SECRET_KEY=admin
+      - CEPH_DEMO_BUCKET=test
+    ports:
+      - 5000:5000
+      - 8080:8080
+      - 8443:8443

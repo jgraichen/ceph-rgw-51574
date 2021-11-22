@@ -1,0 +1,41 @@
+Id: policy-public-uploads
+Statement:
+  - Action:
+      - s3:GetObject
+      - s3:PutObject
+      - s3:DeleteObject
+    Effect: Allow
+    Principal:
+      AWS:
+        - arn:aws:iam:::user/admin
+    Resource:
+      - arn:aws:s3:::test/uploads/*
+    Sid: web-uploads
+  - Action:
+      - s3:ListBucket
+    Effect: Allow
+    Principal:
+      AWS:
+        - arn:aws:iam:::user/admin
+    Resource:
+      - arn:aws:s3:::test
+    Sid: upload-listing
+  - Action:
+      - s3:GetObject
+    Effect: Allow
+    Principal:
+      AWS:
+        - arn:aws:iam:::user/admin
+    Resource:
+      - arn:aws:s3:::test/uploads/*
+    Sid: upload-processing
+  - Action:
+      - s3:GetObject
+      - s3:DeleteObject
+    Effect: Allow
+    Principal:
+      AWS: "*"
+    Resource:
+      - arn:aws:s3:::test/uploads/*
+    Sid: upload-cancels
+Version: "2012-10-17"
