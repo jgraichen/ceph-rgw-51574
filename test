@@ -15,7 +15,7 @@ done
 
 echo
 echo 'INFO: Run ruby script...'
-if ruby ./script.rb; then
+if ruby ./script.rb 2>&1; then
   echo
   echo "ERR: Script did *not* fail!"
   exit 1
