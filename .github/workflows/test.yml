@@ -4,6 +4,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
 
 jobs:
   test:
@@ -13,4 +15,3 @@ jobs:
       - uses: actions/checkout@master
       - run: sudo gem install aws-sdk-s3
       - run: ./test
-
