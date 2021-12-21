@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+echo
+echo 'INFO: Start radosgw...'
+docker-compose up -d
+
+echo
+echo -n 'INFO: Wait for RGW to become available'
+until curl --output /dev/null --silent --head --fail http://127.0.0.1:8080; do
+  printf '.'
+  sleep 5
+done
+
+echo
+echo 'INFO: Run ruby script...'
+if ruby ./script.rb; then
+  echo
+  echo "ERR: Script did *not* fail!"
+  exit 1
+fi
+
+top="$(docker-compose top || true)"
+if [ -z "$top" ]; then
+  echo
+  echo "INFO: container processes not running anymore."
+  echo "$top"
+fi
+
+echo
+echo "OK: rgw likely has crashed"
+
