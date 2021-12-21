@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'aws-sdk-s3'
 require 'logger'
@@ -16,7 +17,7 @@ client = Aws::S3::Client.new(
   access_key_id: 'admin',
   secret_access_key: 'admin',
   http_wire_trace: true,
-  logger: Logger.new($stdout),
+  logger: Logger.new($stdout)
 )
 
 res = Aws::S3::Resource.new(client: client)
@@ -25,12 +26,14 @@ bucket = res.bucket('test')
 bucket.create
 bucket.policy.put(policy: JSON.generate(YAML.safe_load(File.read('policy.yml'))))
 
-signed = bucket.presigned_post({
-  key_starts_with: 'uploads/',
-  acl: 'public-read',
-  metadata: {'x-purpose': 'user-upload', 'x-state': 'accepted'},
-  allow_any: ['Content-Type']
-})
+signed = bucket.presigned_post(
+  {
+    key_starts_with: 'uploads/',
+    acl: 'public-read',
+    metadata: { 'x-purpose': 'user-upload', 'x-state': 'accepted' },
+    allow_any: ['Content-Type']
+  }
+)
 
 pp JSON.parse(Base64.decode64(signed.fields['policy']))
 
