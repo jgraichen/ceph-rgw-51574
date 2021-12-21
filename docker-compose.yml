@@ -1,7 +1,7 @@
 version: "3"
 services:
   ceph:
-    image: quay.io/ceph/daemon
+    image: quay.io/ceph/daemon:latest-devel
     command: demo --debug 255
     environment:
       - NETWORK_AUTO_DETECT=4
