@@ -6,6 +6,9 @@ require 'base64'
 require 'yaml'
 require 'json'
 
+# Ensure errors are printed
+$stdout.sync = $stderr.sync = true
+
 client = Aws::S3::Client.new(
   endpoint: 'http://127.0.0.1:8080',
   force_path_style: true,
