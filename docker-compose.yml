@@ -2,7 +2,7 @@ version: "3"
 services:
   ceph:
     image: quay.io/ceph/daemon:latest-devel
-    command: demo --debug 255
+    command: demo
     environment:
       - NETWORK_AUTO_DETECT=4
       - DEMO_DAEMONS=osd rgw
