@@ -15,7 +15,7 @@ done
 
 echo
 echo 'INFO: Runtime information'
-docker-compose exec ceph bash -x -c 'ceph --version'
+docker-compose exec -it ceph bash -x -c 'ceph --version'
 
 echo
 echo 'INFO: Run ruby script...'
