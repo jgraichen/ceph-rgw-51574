@@ -14,6 +14,10 @@ until curl --output /dev/null --silent --head --fail http://127.0.0.1:8080; do
 done
 
 echo
+echo 'INFO: Runtime information'
+docker-compose exec ceph bash -x -c 'ceph --version'
+
+echo
 echo 'INFO: Run ruby script...'
 if ruby ./script.rb 2>&1; then
   echo
@@ -30,4 +34,3 @@ fi
 
 echo
 echo "OK: rgw likely has crashed"
-

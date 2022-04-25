@@ -8,8 +8,33 @@ on:
     - cron: "0 8 * * 1"
 
 jobs:
-  test:
+  latest:
     runs-on: ubuntu-20.04
+
+    env:
+      CEPH_TAG: latest
+
+    steps:
+      - uses: actions/checkout@master
+      - run: sudo gem install aws-sdk-s3
+      - run: ./test
+
+  latest-devel:
+    runs-on: ubuntu-20.04
+
+    env:
+      CEPH_TAG: latest-devel
+
+    steps:
+      - uses: actions/checkout@master
+      - run: sudo gem install aws-sdk-s3
+      - run: ./test
+
+  latest-pacific:
+    runs-on: ubuntu-20.04
+
+    env:
+      CEPH_TAG: latest-pacific
 
     steps:
       - uses: actions/checkout@master
