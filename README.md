@@ -17,4 +17,5 @@ The `./script.rb` ruby script uses the `aws-sdk-s3` client to first set up the S
 
 ## CI
 
-See https://github.com/jgraichen/ceph-rgw-51574/actions. If the test is green, `radosgw` likely did crash.
+See https://github.com/jgraichen/ceph-rgw-51574/actions. If the test is
+green, the file was uploaded successfully.
