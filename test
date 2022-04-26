@@ -2,6 +2,8 @@
 
 set -e
 
+EXIT_CODE=0
+
 echo
 echo 'INFO: Start radosgw...'
 docker-compose up -d
@@ -22,6 +24,7 @@ echo 'INFO: Run script...'
 if ! ruby ./script.rb 2>&1; then
   echo
   echo "ERR: Script failed!"
+  EXIT_CODE=1
 fi
 
 top="$(docker-compose top || true)"
@@ -29,4 +32,7 @@ if [ -z "$top" ]; then
   echo
   echo "INFO: container not running anymore."
   echo "$top"
+  EXIT_CODE=1
 fi
+
+exit $EXIT_CODE
