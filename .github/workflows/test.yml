@@ -40,3 +40,14 @@ jobs:
       - uses: actions/checkout@master
       - run: sudo gem install aws-sdk-s3
       - run: ./test
+
+  latest-pacific-devel:
+    runs-on: ubuntu-20.04
+
+    env:
+      CEPH_TAG: latest-pacific-devel
+
+    steps:
+      - uses: actions/checkout@master
+      - run: sudo gem install aws-sdk-s3
+      - run: ./test

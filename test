@@ -18,19 +18,15 @@ echo 'INFO: Runtime information'
 docker-compose exec -T ceph ceph --version
 
 echo
-echo 'INFO: Run ruby script...'
-if ruby ./script.rb 2>&1; then
+echo 'INFO: Run script...'
+if ! ruby ./script.rb 2>&1; then
   echo
-  echo "ERR: Script did *not* fail!"
-  exit 1
+  echo "ERR: Script failed!"
 fi
 
 top="$(docker-compose top || true)"
 if [ -z "$top" ]; then
   echo
-  echo "INFO: container processes not running anymore."
+  echo "INFO: container not running anymore."
   echo "$top"
 fi
-
-echo
-echo "OK: rgw likely has crashed"
