@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         tag:
           - latest
           - latest-devel
-          - latest-octopus
-          - latest-octopus-devel
+          - latest-quincy
+          - latest-quincy-devel
           - latest-pacific
           - latest-pacific-devel
 
