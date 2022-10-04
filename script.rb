@@ -37,6 +37,9 @@ signed = bucket.presigned_post(
 
 pp JSON.parse(Base64.decode64(signed.fields['policy']))
 
+# Wait a bit to clearly have a new request in the log
+sleep 1
+
 uri = URI(signed.url)
 form_data = signed.fields.to_a
 form_data << ['key', 'uploads/test.txt']
