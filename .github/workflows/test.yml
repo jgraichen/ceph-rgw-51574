@@ -30,6 +30,8 @@ jobs:
       - uses: actions/checkout@master
       - run: sudo gem install aws-sdk-s3
       - run: ./test
+      - run: cat logs/client.rgw.test.log
+        if: success() || failure()
       - uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
