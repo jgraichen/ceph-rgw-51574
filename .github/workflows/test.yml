@@ -33,5 +33,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
-          name: rgw-log
+          name: ${{ matrix.tag }}-rgw-log
           path: logs/client.rgw.*.log
