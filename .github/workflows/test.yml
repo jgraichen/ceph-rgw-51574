@@ -30,3 +30,7 @@ jobs:
       - uses: actions/checkout@master
       - run: sudo gem install aws-sdk-s3
       - run: ./test
+      - uses: actions/upload-artifact@v3
+        with:
+          name: rgw-log
+          path: logs/client.rgw.*.log

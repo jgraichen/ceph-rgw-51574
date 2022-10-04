@@ -35,4 +35,7 @@ if [ -z "$top" ]; then
   EXIT_CODE=1
 fi
 
+echo "INFO: Last lines from RGW log output"
+tail -n200 logs/client.rgw.test.log
+
 exit $EXIT_CODE
