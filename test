@@ -9,18 +9,27 @@ echo 'INFO: Start radosgw...'
 docker-compose up -d
 
 echo
-echo -n 'INFO: Wait for RGW to become available'
-until curl --output /dev/null --silent --head --fail http://127.0.0.1:8080; do
+echo 'INFO: Wait for RGW to become available'
+attempts=1
+until out=$(curl --max-time 1 --head --fail http://127.0.0.1:8080 2>&1); do
+  if [ ${attempts} -eq 30 ]; then
+    echo "ERROR: Max attempts reached"
+    echo "$out"
+    exit 1
+  fi
+
   printf '.'
-  sleep 5
+  attempts=$((attempts+1))
+  sleep 1
 done
 
+echo
 echo
 echo 'INFO: Runtime information'
 docker-compose exec -T ceph ceph --version
 
 echo
-echo 'INFO: Run script...'
+echo 'INFO: Run test script...'
 if ! ruby ./script.rb 2>&1; then
   echo
   echo "ERR: Script failed!"
