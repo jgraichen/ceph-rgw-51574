@@ -31,10 +31,11 @@ jobs:
         uses: actions/checkout@master
       - name: Install aws-sdk-s3 ruby gem
         run: sudo gem install aws-sdk-s3
-      - name: Start ceph:${{ matrix.tag }} image
-        uses: isbang/compose-action@v1.4.1
       - name: Execute test script
         run: ./test
+      - name: Collect compose logs
+        run: cat logs/compose.log
+        if: success() || failure()
       - name: Collect RadosGW log
         run: cat logs/client.rgw.test.log
         if: success() || failure()

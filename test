@@ -6,7 +6,7 @@ EXIT_CODE=0
 
 echo
 echo 'INFO: Start radosgw...'
-docker-compose up -d
+docker-compose up > logs/compose.log &
 
 echo
 echo 'INFO: Wait for RGW to become available'
