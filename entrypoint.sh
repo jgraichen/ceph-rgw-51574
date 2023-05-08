@@ -5,6 +5,11 @@ set -e
 IPV4_REGEXP='[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
 IPV4_NETWORK_REGEXP="$IPV4_REGEXP/[0-9]\\{1,2\\}"
 
+# Test if a command line tool is available
+function is_available {
+  command -v "$@" &>/dev/null
+}
+
 function get_ip {
   local nic=$1
   if is_available ip; then
