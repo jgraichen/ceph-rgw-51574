@@ -12,7 +12,7 @@ echo
 echo 'INFO: Wait for RGW to become available'
 attempts=1
 until out=$(curl --max-time 1 --head --fail http://127.0.0.1:8080 2>&1); do
-  if [ ${attempts} -eq 30 ]; then
+  if [ ${attempts} -eq 120 ]; then
     echo "ERROR: Max attempts reached"
     echo "$out"
     exit 1
