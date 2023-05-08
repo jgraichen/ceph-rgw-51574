@@ -41,6 +41,6 @@ export DAEMON_OPTS
 
 # Write logs in demo setup; otherwise we will not see any output from RGW
 sed -i "s/default-log-to-file=false/default-log-to-file=true/" /opt/ceph-container/bin/demo
-sed -i "s/default-log-to-stderr=true/default-log-to-stderr=false/" /opt/ceph-container/bin/demo
+# sed -i "s/default-log-to-stderr=true/default-log-to-stderr=false/" /opt/ceph-container/bin/demo
 
 exec /opt/ceph-container/bin/demo
