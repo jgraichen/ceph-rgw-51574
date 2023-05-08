@@ -53,5 +53,7 @@ response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https
   http.request(request)
 end
 
-pp response.body
+puts
+puts 'Got a response:'
+puts
 pp response
