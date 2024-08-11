@@ -6,7 +6,7 @@ EXIT_CODE=0
 
 echo
 echo 'INFO: Start radosgw...'
-docker-compose up > logs/compose.log &
+docker compose up > logs/compose.log &
 
 echo
 echo 'INFO: Wait for RGW to become available'
@@ -26,7 +26,7 @@ done
 echo
 echo
 echo 'INFO: Runtime information'
-docker-compose exec -T ceph ceph --version
+docker compose exec -T ceph ceph --version
 
 echo
 echo 'INFO: Run test script...'
@@ -36,7 +36,7 @@ if ! ruby ./script.rb 2>&1; then
   EXIT_CODE=1
 fi
 
-top="$(docker-compose top || true)"
+top="$(docker compose top || true)"
 if [ -z "$top" ]; then
   echo
   echo "INFO: container not running anymore."
